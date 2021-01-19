@@ -30,7 +30,7 @@ function draw() {
 background(rgb(46,139,87));
 textSize(20);
 fill("red");
-if(foodStock){
+if(foodStock>=0){
 text("food :"+foodStock,700,50);
 
 if(keyWentDown("up")){

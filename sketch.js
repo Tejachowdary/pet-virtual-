@@ -1,7 +1,7 @@
 //Create variables here
 var happyDog, dogImage,dog;
 var database;
-var foodStock=20;
+var foodStock;
 var foodStockLoc;
 
 
@@ -30,14 +30,15 @@ function draw() {
 background(rgb(46,139,87));
 textSize(20);
 fill("red");
+if(foodStock){
 text("food :"+foodStock,700,50);
 
 if(keyWentDown("up")){
-  foodStock--;
+  writeStock(foodStock)
   dog.addImage("happyDog",happyDog);
-  database.ref("/").set({
-    dogFood:foodStock
-  })
+  
+}
+
 }
 
 
@@ -51,6 +52,19 @@ function readStock(data){
   foodStock=data.val();
 
 
+}
+
+function writeStock(foodStock){
+  
+  if(foodStock<=0){
+    foodStock=0;
+  }else{
+    foodStock--;
+  }
+  
+  database.ref("/").set({
+    dogFood:foodStock
+  })
 }
 
 function reportError(){
